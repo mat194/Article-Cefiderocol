@@ -105,9 +105,6 @@ combination therapy and not the primary endpoint of the study.
 | exposure            |                                                                | unclear               |
 +---------------------+----------------------------------------------------------------+-----------------------+
 | Comparability       | -   Adjusted for age, sex, comorbidities.                      | No adjustment         |
-|                     |                                                                |                       |
-|                     | <!-- -->                                                       |                       |
-|                     |                                                                |                       |
 |                     | -   Adjusted for known colonization or source control, or      |                       |
 |                     |     previous antibiotic therapy or time from diagnosis to      |                       |
 |                     |     antibiotic                                                 |                       |
