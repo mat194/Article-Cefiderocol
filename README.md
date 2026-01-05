@@ -58,6 +58,17 @@ Rendering is handled by Quarto, with LaTeX used as the primary typesetting engin
 References are managed via **BibTeX** (`bibliography.bib`) and formatted using Elsevier numeric style.  
 Conference abstracts, posters, and oral presentations (e.g., ECCMID) are explicitly included and curated.
 
+By default, the manuscript is rendered to **DOCX** using the Vancouver CSL style:
+
+```yaml
+bibliography: bibliography.bib
+csl: Utils/elsevier-vancouver.csl
+format: docx
+```
+It is possible to switch the output to an **Elsevier-formatted PDF** by:
+- **Commenting** out `csl: Utils/elsevier-vancouver.csl` and `format: docx`
+- **Uncommenting** the `format: elsevier-pdf` block in the Quarto YAML header
+
 ---
 
 ## Related Work
