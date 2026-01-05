@@ -69,17 +69,17 @@ keywords:
   - human studies 
   
 bibliography: bibliography.bib
-# csl: Utils/elsevier-vancouver.csl
+csl: Utils/elsevier-vancouver.csl
     
-# format: docx
+format: docx
 
-format:
-  elsevier-pdf:
-    keep-tex: true
-    journal:
-      formatting: review
-      model: 1p
-      cite-style: number
+# format:
+#   elsevier-pdf:
+#     keep-tex: true
+#     journal:
+#       formatting: review
+#       model: 1p
+#       cite-style: number
 ---
 
 # **Introduction**
