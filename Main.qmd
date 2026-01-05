@@ -69,17 +69,17 @@ keywords:
   - human studies 
   
 bibliography: bibliography.bib
-csl: Utils/elsevier-vancouver.csl
+# csl: Utils/elsevier-vancouver.csl
     
-format: docx
+# format: docx
 
-# format:
-#   elsevier-pdf:
-#     keep-tex: true
-#     journal:
-#       formatting: review
-#       model: 1p
-#       cite-style: number
+format:
+  elsevier-pdf:
+    keep-tex: true
+    journal:
+      formatting: review
+      model: 1p
+      cite-style: number
 ---
 
 # **Introduction**
@@ -124,19 +124,19 @@ Overall, combinations with β-lactamase inhibitors, particularly novel agents, e
 
 ### ***Acinetobacter baumannii*** **complex**
 
-Synergy with amikacin was shown in 7 amikacin-resistant isolates  [@tsuji2016; @abdul-mutakabbir2020] and with tigecycline, minocycline, meropenem, and sulbactam in cefiderocol-resistant isolates [@abdul-mutakabbir2020]. Besides this, tigecycline showed synergism in 123 isolates, confirmed *in vivo* with a *Galleria mellonella* model [@ni2022], as well as other tetracycline analogues (minocycline, tigecycline, eravacycline, and omadacycline) in CRAB isolates, verifying the eravacycline synergism in a neutropenic murine thigh-infection model [@yin2025]. No synergy was observed with colistin, tigecycline, or fosfomycin in 15 CRAB*,* potentially due to the use of the gradient diffusion strip crossing technique [@stolfa].
+Synergy with amikacin was shown in 7 amikacin-resistant isolates  [@tsuji2016; @abdul-mutakabbir2020] and with tigecycline, minocycline, meropenem, and sulbactam in cefiderocol-resistant isolates [@abdul-mutakabbir2020]. Besides this, tigecycline showed synergism in 123 isolates, confirmed *in vivo* with a *Galleria mellonella* model [@ni2022], as well as other tetracycline analogues (minocycline, tigecycline, eravacycline, and omadacycline) in CRAB isolates, verifying the eravacycline synergism in a neutropenic murine thigh-infection model [@yin2025]. No synergy was observed with colistin, tigecycline, or fosfomycin in 15 CRAB*,* potentially due to the use of the gradient diffusion strip crossing technique [@stolfa2021].
 
 Among β-lactams, cefiderocol synergism with meropenem was demonstrated in CRAB but was not reported in other three studies [@tsuji2016; @yamano2020; @abdul-mutakabbir2020; @ni2022]. Avibactam and sulbactam were found synergistic in 2 cefiderocol-resistant PER-producing isolates, but not tazobactam, avibactam, vaborbactam, or relebactam in 7 OXA-carbapenemase-producing isolates [@yamano2020; @bianco2022]. Cefiderocol-zidebactam was shown as a promising combination by an *in silico* analysis [@gopikrishnan2023] and durlobactam lowered the cefiderocol-MIC~50~ and MIC~90~ of 66 isolates but sulbactam did not [@huband2023]. In another study, only the cefiderocol-sulbactam-tigecycline combination reached synergy in an extensively drug-resistant (XDR) *A. baumannii* strain from a patient with VAP [@kobic2022]. Of note, exposure of *A. baumannii* to cefiderocol and sulbactam or avibactam led to the selection of resistant strains [@wong2024]. Cefiderocol, polymyxin B, and rifampicin showed synergistic effects by artificial intelligence but ampicillin-sulbactam exhibited significant antagonistic interaction [@you2025]**.**
 
 ### **Enterobacterales**
 
-Synergies with BLIs have been the most frequently evaluated, demonstrated in tazobactam, avibactam, vaborbactam, and relebactam in three OXA-48 producers but very low synergy with tazobactam, relebactam, and avibactam and no synergy with vaborbactam was found in 7 MBL producers [@bianco2022]. In addition, no synergy with avibactam was shown in 10 double-carbapenemase producers [@bianco2022a], but it was found synergistic in 20 NDM-producing *E. cloacae* isolates [@göpel].
+Synergies with BLIs have been the most frequently evaluated, demonstrated in tazobactam, avibactam, vaborbactam, and relebactam in three OXA-48 producers but very low synergy with tazobactam, relebactam, and avibactam and no synergy with vaborbactam was found in 7 MBL producers [@bianco2022]. In addition, no synergy with avibactam was shown in 10 double-carbapenemase producers [@bianco2022a], but it was found synergistic in 20 NDM-producing *E. cloacae* isolates [@göpel2024].
 
 In *K. pneumoniae*, synergy with avibactam was demonstrated in different experiments including KPC and NDM-producers [@bianco2022; @bianco2022a; @boattini2023; @moon2023] and it produced the most remarkable fold reduction in the MIC compared to other BLIs in 34 isolates [@daoud2023]. However, cefiderocol activity was not improved by the addition of avibactam alone but only when aztreonam or dipicolinic acid was also added in 1 isolate producing NDM-1, OXA-232 and CTX-M-15 and with a mutation in catecholate-siderophore receptor . Relebactam and vaborbactam were found synergic in 18 KPC-producers [@bianco2022a], and synergy with meropenem was demonstrated in one KPC-producer, but was not confirmed for amikacin [@tsuji2016].
 
 ### ***Pseudomonas aeruginosa***
 
-No synergy was shown for avibactam, vaborbactam, or tazobactam in 1 MBL-producer, but it was found for relebactam in this isolate [@bianco2022] and two VIM-producers, and for imipenem-relebactam in two IMP-producers [@boattini2023; @granata2025]. Cotreatment with imipenem resulted in synergistic bactericidal activity in 5 isolates [@ferretti2024] but no synergy for meropenem or amikacin was found in one VIM-producer [@tsuji2016]. However, colistin significantly improved cefiderocol efficacy against biofilms in 2 isolates in an *in vitro* pharmacodynamic model [@elhaj]. Vancomycin addition to cefiderocol was indifferent in 2 isolates [@schilling2024] and colloidal bismuth citrate showed synergism, confirmed in a murine acute pneumonia model, and increased cefiderocol efficacy against biofilm formation, restored susceptibility in a cefiderocol-resistant isolate and significantly increased survival rate and decreased the bacterial load *in vivo* [@wang2023].
+No synergy was shown for avibactam, vaborbactam, or tazobactam in 1 MBL-producer, but it was found for relebactam in this isolate [@bianco2022] and two VIM-producers, and for imipenem-relebactam in two IMP-producers [@boattini2023; @granata2025]. Cotreatment with imipenem resulted in synergistic bactericidal activity in 5 isolates [@ferretti2024] but no synergy for meropenem or amikacin was found in one VIM-producer [@tsuji2016]. However, colistin significantly improved cefiderocol efficacy against biofilms in 2 isolates in an *in vitro* pharmacodynamic model [@elhaj2024]. Vancomycin addition to cefiderocol was indifferent in 2 isolates [@schilling2024] and colloidal bismuth citrate showed synergism, confirmed in a murine acute pneumonia model, and increased cefiderocol efficacy against biofilm formation, restored susceptibility in a cefiderocol-resistant isolate and significantly increased survival rate and decreased the bacterial load *in vivo* [@wang2023].
 
 ### ***Stenotrophomonas maltophilia***
 
