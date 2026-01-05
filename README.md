@@ -65,11 +65,3 @@ Conference abstracts, posters, and oral presentations (e.g., ECCMID) are explici
 A **related and complementary meta-analysis on cefiderocol** is maintained in a separate repository:
 
 🔗 https://github.com/mat194/Cefiderocol-Meta-analysis
-
----
-
-## Author
-
-Matteo Morra  
-Verona University Hospital  
-Infectious Diseases & Clinical Research
