@@ -72,6 +72,14 @@ bibliography: bibliography.bib
 csl: Utils/elsevier-vancouver.csl
     
 format: docx
+
+# format:
+#   elsevier-pdf:
+#     keep-tex: true
+#     journal:
+#       formatting: review
+#       model: 1p
+#       cite-style: number
 ---
 
 # **Introduction**
@@ -164,7 +172,7 @@ Currently available evidence is of low quality, highly heterogeneous, and insuff
 
 Well-structured clinical trials and observational studies are needed to define the role of cefiderocol-based combinations, with systematic assessment of clinical outcomes and microbiological endpoints, including resistance emergence. Given the promising in vitro activity and the paucity of clinical trials or high-quality observational studies assessing cefiderocol–BLI combinations, in vivo and clinical evaluation is needed to better define their therapeutic role.
 
-### **Funding** 
+### **Funding**
 
 This work was part of the CLEARER project (Current cLinical scEnARios for the use of cefidErocol in multidrug-Resistant infections: a case study-based approach) supported by the Global Antibiotic Research and Development Partnership (GARDP).
 
