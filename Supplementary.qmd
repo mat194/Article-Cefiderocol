@@ -107,7 +107,7 @@ Quality assessment was performed using the Cochrane risk-of-bias tool for RCTs a
 | Adequacy of follow-up                | Adjusted for missing data or follow-up \> 14 days.                                                                         | No statement regarding missing data. No follow-up after end of therapy                      |
 +--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
 
-: Risk of bias: low 6-7 stars, moderate 4-5 stars, high 1-3 stars. Note that risk of Bias is assessed focusing on the comparison between cefiderocol monotherapy and combination therapy that, in most of the cases, is not the primary outcome of interest of the studies.
+: **Table S2**: Risk of bias: low 6-7 stars, moderate 4-5 stars, high 1-3 stars. Note that risk of Bias is assessed focusing on the comparison between cefiderocol monotherapy and combination therapy that, in most of the cases, is not the primary outcome of interest of the studies.
 
 ## Analysis
 
