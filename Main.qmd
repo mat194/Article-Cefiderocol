@@ -70,8 +70,14 @@ keywords:
   
 bibliography: bibliography.bib
 csl: Utils/elsevier-vancouver.csl
+
+filters:
+  - authors-block
     
-format: docx
+format:
+  docx: default
+  pdf:
+    keep-tex: true
 
 # format:
 #   elsevier-pdf:

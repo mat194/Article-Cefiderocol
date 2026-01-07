@@ -49,8 +49,14 @@ affiliations:
     name: "Global Antibiotic Research and Development Partnership (GARDP), Geneva, Switzerland"
 bibliography: bibliography.bib
 csl: Utils/elsevier-vancouver.csl
+
+filters:
+  - authors-block
     
-format: docx
+format:
+  docx: default
+  pdf:
+    keep-tex: true
 
 # format:
 #   elsevier-pdf:
