@@ -54,7 +54,7 @@ filters:
   - authors-block
     
 format:
-  docx: default
+  wordcount-docx: default
   pdf:
     keep-tex: true
 
