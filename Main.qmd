@@ -370,7 +370,7 @@ No conflicts of interest to declare
 |                                |                |                     |                        |                                             |                                             |                         |                  |
 |                                |                |                     |                        | Combo 99 (50%)                              |                                             |                         |                  |
 +--------------------------------+----------------+---------------------+------------------------+---------------------------------------------+---------------------------------------------+-------------------------+------------------+
-| Falcone,                       |                |                     |                        |                                             |                                             |                         | N/A              |
+| Falcone, 2022                  |                |                     |                        |                                             |                                             |                         | N/A              |
 +--------------------------------+----------------+---------------------+------------------------+---------------------------------------------+---------------------------------------------+-------------------------+------------------+
 |                                |                |                     |                        |                                             |                                             |                         |                  |
 +--------------------------------+----------------+---------------------+------------------------+---------------------------------------------+---------------------------------------------+-------------------------+------------------+
@@ -406,7 +406,7 @@ No conflicts of interest to declare
 : **Table 2.** Summary of cefiderocol combination therapies in human studies. **Molecules** (in alphabetical order) AMK: amikacin, A–S: ampicillin-sulbactam, CEP: cefepime, CIP: ciprofloxacin, COL: colistin, CAZ: ceftazidime, CZA-AVI: ceftazidime-avibactam, FOS: fosfomycin, LEV: levofloxacin, MER: meropenem, MIN: minocycline, M-V: meropenem-vaborbactam, P–T: piperacillin-tazobactam, TMP/SMX: trimethoprim/sulfamethoxazole, TGC: tigecycline, TOB: tobramycin, AGs: aminoglycosides, ERAV: eravacycline, IMI-REL: imipenem/cilistatin/releabactam. POL: polymixin. **Isolates** (in alphabetical order) CRAB: carbapenem-resistant *Acinetobacter baumannii complex*, Pa: *P. aeruginosa*; Kp: *K. pneumoniae*; E: Enterobacteriales; SMAL: *Stenotrophomonas maltophilia*; XDR: extensively-drug resistant. **Type of study and conditions** P: prospective study; R: retrospective study; Combo: combination. BSIs: bloodstream infection; CLABSI: central line associated BSIs; LRTI: lower respiratory tract infections; SSTI: skin and soft tissue infections; cIAIs: complicated intra-abdominal infection; cUTIs: complicated urinary tract infection; EVD extra ventricular drainage; HAP: hospital acquired pneumonia; VAP: Ventilator-Associated Pneumonia, BJI: bone and joint infections. **Results** NS: non-significant; N/A: *P values* not reported or calculated by the authors are reported.
 :::
 
-### Refrences
+### References
 
 ::: {#refs}
 :::
