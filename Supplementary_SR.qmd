@@ -1,0 +1,177 @@
+---
+title: "Exploring the evidence for use of cefiderocol as part of combination therapies: a systematic review of *in vitro*, *in vivo*, and clinical studies"
+subtitle: "Supplementary material"
+author:
+  - name: Marco Meroi
+    equal-contributor: true
+    affiliation:
+      - ref: verona
+  - name: Juan Antonio del Castillo Polo
+    equal-contributor: true
+    affiliation:
+      - ref: spain
+  - name: Rebecca Scardellato
+    affiliation:
+      - ref: verona
+  - name: Alessandra Nazeri
+    affiliation:
+      - ref: verona
+  - name: Alessia Savoldi
+    affiliation:
+      - ref: verona
+  - name: Renata Da Costa
+    affiliation:
+      - ref: gardp
+  - name: Laura Piddock
+    affiliation:
+      - ref: gardp
+  - name: Jennifer Cohn
+    affiliation:
+      - ref: gardp
+  - name: Evelina Tacconelli
+    affiliation:
+      - ref: verona
+  - name: Matteo Morra
+    corresponding: true
+    email: matteo.morra@univr.it
+    affiliation:
+      - ref: verona
+  - name: Elda Righi
+    affiliation:
+      - ref: verona
+affiliations:
+  
+  - id: verona
+    name: "Division of Infectious Diseases, Department of Diagnostics and Public Health, University of Verona, Verona, Italy"
+  - id: spain
+    name: "Servicio de Microbiología, Hospital Universitario Ramón y Cajal and Instituto Ramón y Cajal de Investigación Sanitaria (IRYCIS), Madrid, Spain"
+  - id: gardp
+    name: "Global Antibiotic Research and Development Partnership (GARDP), Geneva, Switzerland"
+bibliography: bibliography.bib
+csl: Utils/elsevier-vancouver.csl
+
+filters:
+  - authors-block
+    
+format:
+  wordcount-docx: default
+  pdf:
+    keep-tex: true
+
+# format:
+#   elsevier-pdf:
+#     keep-tex: true
+#     journal:
+#       formatting: review
+#       model: 1p
+#       cite-style: number
+---
+
+# Exploratory Meta-analysis
+
+## Materials and methods
+
+Randomized controlled trials (RCTs) and observational cohort studies enrolling at least 25 patients were included. Case series, case reports, and studies with fewer than 25 total participants were excluded from the analysis. Details regarding the search strategy, screening and data extraction process are provided in the main manuscript.
+
+## Quality of evidence
+
+Quality assessment was performed using the Cochrane risk-of-bias tool for RCTs and the Newcastle-Ottawa Scale for observational cohort studies.
+
+| Criteria                                         | **Evaluation**    |
+|--------------------------------------------------|-------------------|
+| Randomisation process                            | \- High risk      |
+| Deviations from Intended interventions Signaling | \- High risk      |
+| Missing outcomes                                 | \- Low risk       |
+| Measurement of outcome                           | \- Low risk       |
+| Selection of reported results                    | \- Some concernes |
+| **Overall**                                      | \- Some concernes |
+
+: **Table S1**: Robins-2 assessment of risk of bias– Clinical trial, Bassetti et al 2020 [@bassetti2021]. Note that risk of Bias is assessed focusing on the comparison between cefiderocol monotherapy and combination therapy and not the primary endpoint of the study.
+
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| **Criteria**                         | **Acceptable**                                                                                                             | **Unacceptable**                                                                            |
+|                                      |                                                                                                                            |                                                                                             |
+|                                      | **(star awarded)**                                                                                                         | **(star not awarded)**                                                                      |
++======================================+============================================================================================================================+=============================================================================================+
+| Representativeness of exposed cohort | Truly representative OR somewhat representative                                                                            | No description                                                                              |
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Selection of non-exposed cohort      | Drawn from the same community as the exposed cohort                                                                        | Drawn from a different source OR no description of the derivation of the non-exposed cohort |
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Ascertainment of exposure            | Secure records or directly measured                                                                                        | Self-report OR unclear                                                                      |
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Comparability                        | -   Adjusted for age, sex, comorbidities.                                                                                  | No adjustment                                                                               |
+|                                      | -   Adjusted for known colonization or source control, or previous antibiotic therapy or time from diagnosis to antibiotic |                                                                                             |
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Outcome of interest                  | Secure records or directly measured                                                                                        | Self-report OR unclear                                                                      |
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+| Adequacy of follow-up                | Adjusted for missing data or follow-up \> 14 days.                                                                         | No statement regarding missing data. No follow-up after end of therapy                      |
++--------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+
+: **Table S2**: Risk of bias: low 6-7 stars, moderate 4-5 stars, high 1-3 stars. Note that risk of Bias is assessed focusing on the comparison between cefiderocol monotherapy and combination therapy that, in most of the cases, is not the primary outcome of interest of the studies.
+
+## Analysis
+
+A meta-analysis was conducted using random-effects models with the restricted maximum-likelihood (REML) estimator to account for between-study variability. The analysed outcomes were 30-day all-cause mortality, clinical and microbiological cure in patients treated with cefiderocol combination therapy versus monotherapy. Effect sizes were calculated as odds ratios (ORs) with 95% confidence intervals (CIs). When available, adjusted effect sizes were pooled using the inverse variance method. In the absence of adjusted estimates, crude odds ratios were calculated and included in the analysis.
+
+A 95% prediction interval was also displayed to estimate the range in which the true effect of a new study is expected to lie. Heterogeneity across studies was assessed using the Chi-squared test (with a p-value \< 0.1 indicating substantial heterogeneity) and the I² statistic (with values \> 50% considered indicative of moderate to high heterogeneity).
+
+A subgroup analysis was performed based on the type of infection, distinguishing between CRAB infections only and mixed MDR infections. To assess whether treatment effects differed significantly between subgroups, a Q-test for subgroup differences was performed. With two subgroups, this test is based on one degree of freedom. A p-value \< 0.05 was considered indicative of a significant difference in effect estimates.
+
+Potential publication bias was evaluated through contour-enhanced funnel plots, incorporating significance contours at *p* \< 0.1, *p* \< 0.05, and *p* \< 0.01, as shown in the plot legends.Egger’s test for funnel plot asymmetry was not performed, as none of the pooled analyses included 10 or more studies. For the same reason, the trim and fill method was not applied.
+
+Influence analysis was conducted to evaluate the robustness of the results. Baujat plots were used to identify studies with the greatest contribution to heterogeneity and effect size, and leave-one-out analyses were performed to assess the influence of individual studies on the overall pooled estimate (results not shown, available on github).
+
+All analyses were conducted using R software (version 4.4.3). The meta and dmetar packages were primarily used for meta-analysis calculations and sensitivity analysis.
+
+## **Data availability**
+
+Data and analysis are available at: <https://github.com/mat194/Cefiderocol-Meta-analysis>
+
+## Results
+
+### **Does cefiderocol combination therapy improve 30 days mortality compared to monotherapy?**
+
+![](images/clipboard-384120512.png){fig-align="center"}
+
+A total of nine retrospective studies published between 2022 and 2024 were included in the meta-analysis, comprising both monocentric and multicentric designs from Italy (n = 6), the USA (n = 1), France (n = 1), and an international collaboration (n = 1). Only one study [@piccica2023] provided an adjusted effect estimate using a propensity score inverse probability weighting method (aOR 1.11, 95% CI 0.63–1.96). The remaining studies relied on univariate analyses. CRAB was the most frequently targeted pathogen, although several studies also included broader MDR organisms.
+
+The test for subgroup differences was not statistically significant, indicating no strong evidence of differential treatment effect between the subgroups.
+
+The influence analysis indicated that no single study disproportionately affected the overall pooled estimate or heterogeneity. The Baujat plot showed that onely *Falcone, 2022* [@falcone2022] contributed most to heterogeneity, while *Piccica, 202*3 [@piccica2023] had the greatest influence on the pooled result. However, leave-one-out sensitivity analysis confirmed the stability of the overall effect estimate, with no major change in heterogeneity (I² remained 0% in all iterations).
+
+![](images/clipboard-4124015486.png){fig-align="center"}
+
+The contour-enhanced funnel plot does not reveal clear evidence of publication bias. The distribution of studies appears relatively symmetrical around the central effect estimate, and most points fall within non-significant regions, suggesting that any observed asymmetry is unlikely to be due to selective reporting of statistically significant results.
+
+### **Does cefiderocol combination therapy improve clinical cure compared to monotherapy?**
+
+![](images/clipboard-4070756505.png)
+
+None of the included studies reported adjusted effect estimates; all results were derived from univariate analyses. The analysis includes one randomized clinical trial, two prospective cohort studies, and six retrospective observational studies.
+
+The influence analysis revealed that no single study had a disproportionate impact on the pooled effect estimate, although a few studies contributed more to heterogeneity or had a slightly higher influence. According to the Baujat plot, *Dalfino, 2023* [@dalfino2023] showed the highest contribution to heterogeneity, while *Giannella, 2023* [@giannella2023] had the greatest influence on the pooled result.
+
+The test for subgroup differences was not statistically significant, suggesting no clear evidence of a differential treatment effect between the two infection categories.
+
+Leave-one-out analysis confirmed the robustness of the meta-analytic findings. Omitting individual studies led to minimal shifts in the pooled odds ratio, and none of the exclusions resulted in a statistically significant change. Heterogeneity remained low to moderate (I² range: 0% to 43%) throughout, indicating consistent findings across studies.
+
+![](images/clipboard-3145531308.png){fig-align="center"}
+
+### **Does cefiderocol combination therapy improve microbiological cure compared to monotherapy?**
+
+![](images/clipboard-135960318.png)
+
+None of the included studies reported adjusted effect estimates; all outcomes were based on univariate comparisons. The analysis includes one randomized clinical trial, and four retrospective observational studies.
+
+The influence analysis showed that the overall pooled estimate was robust, with no single study exerting a disproportionate influence on the meta-analytic result. The Baujat plot identified *Mazzitelli, 2023* as the most influential study on the pooled effect size, followed by *El Ghali, 2024* [@elghali2024] and *Palermo, 2023* [@palermo2023]. However, the contribution of all studies to overall heterogeneity remained minimal.
+
+The test for subgroup differences yielded a statistically significant result, suggesting a potential difference in treatment effect between the CRAB and mixed infection groups. However, this result must be interpreted with caution. As noted in the Cochrane Handbook for Systematic Reviews of Interventions, statistical tests for subgroup differences can yield spurious significance when the number of studies is small, and power to detect true differences is generally low. With only two and three studies in the respective subgroups, the observed significance may reflect random variation rather than a true differential effect.
+
+Leave-one-out sensitivity analysis confirmed the stability of the results. Omitting any single study did not lead to significant shifts in the pooled odds ratio. Heterogeneity remained low (I² = 0%) throughout all iterations, reinforcing the consistency of findings.
+
+![](images/clipboard-3107019296.png){fig-align="center"}
+
+### References
+
+::: {#refs}
+:::
