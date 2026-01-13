@@ -1,0 +1,224 @@
+---
+title: "CLEARER study: a global survey on cefiderocol use in multidrug-resistant infections"
+
+author:
+  - name: Marco Meroi
+    affiliation:
+      - ref: verona
+
+  - name: Juan Antonio del Castillo Polo
+    affiliation:
+      - ref: spain
+
+  - name: Rebecca Scardellato
+    affiliation:
+      - ref: verona
+
+  - name: Gaia Maccarrone
+    affiliation:
+      - ref: verona
+
+  - name: Renata Da Costa
+    affiliation:
+      - ref: gardp
+
+  - name: Laura Piddock
+    affiliation:
+      - ref: gardp
+
+  - name: Jennifer Cohn
+    affiliation:
+      - ref: gardp
+
+  - name: Evelina Tacconelli
+    affiliation:
+      - ref: verona
+
+  - name: Matteo Morra
+    corresponding: true
+    email: matteo.morra@univr.it
+    affiliation:
+      - ref: verona
+
+  - name: Elda Righi
+    affiliation:
+      - ref: verona
+      
+  - name: GARDP CLEARER Study Group
+
+affiliations:
+  - id: verona
+    name: "Division of Infectious Diseases, Department of Diagnostics and Public Health, University of Verona, Verona, Italy"
+
+  - id: spain
+    name: "Servicio de Microbiología, Hospital Universitario Ramón y Cajal and Instituto Ramón y Cajal de Investigación Sanitaria (IRYCIS), Madrid, Spain"
+
+  - id: gardp
+    name: "Global Antibiotic Research and Development Partnership (GARDP), Geneva, Switzerland"
+    
+keywords: 
+  - cefiderocol
+  - combination therapy
+  - systematic review
+  - in vitro studies
+  - in vivo studies
+  - human studies 
+  
+bibliography: bibliography.bib
+csl: Utils/elsevier-vancouver.csl
+
+lang: en
+
+execute:
+  echo: false
+  error: false
+  message: false
+  include: false
+
+filters:
+  - authors-block
+  - landscape
+    
+format:
+  wordcount-docx: default
+  pdf:
+    keep-tex: true
+    # in terminal: quarto pandoc --print-default-data-file reference.docx > reference.docx
+    reference-doc: Utils/custum-reference-doc.docx
+
+# format:
+#   elsevier-pdf:
+#     keep-tex: true
+#     journal:
+#       formatting: review
+#       model: 1p
+#       cite-style: number
+---
+
+# Abstract
+
+A survey was conducted in 2023 to assess cefiderocol availability, use, and perceived efficacy. Responses from 58 specialists in 31 countries showed that cefiderocol was available in only a minority of countries, mainly in Europe, and generally reserved for severe multidrug-resistant infections. It was considered highly effective against CRE and CR Pseudomonas, with uncertain efficacy for CRAB, and more frequently used in clinical vignettes than theoretical answers, often in combination with other agents.
+
+# Introduction
+
+Antimicrobial resistance (AMR) is a major public health challenge, with carbapenem-resistant Gram-negative bacteria (CR-GNB) responsible for significant morbidity and mortality [@naghavi2024] . Cefiderocol, a siderophore cephalosporin with enhanced membrane penetration, shows potent in vitro activity against Enterobacterales, *Pseudomonas aeruginosa*, *Acinetobacter baumannii*, and *Stenotrophomonas maltophilia*, including metallo-β-lactamase (MBL) producers [@ito2018; @Karlowsky2022]. Clinical trials have demonstrated cefiderocol non-inferiority for complicated urinary tract infections (cUTIs) and hospital/ventilator-associated pneumonia (HAP-VAP) [@Portsmouth2018; @Wunderink2021], but these studies were not focused on infections produced by CR-GNB. The CREDIBLE-CR trial was the only study to specifically evaluate these infections and its results suggested a potential association between cefiderocol use and higher mortality in the subgroup of CRAB patients [@bassetti2021]. Several uncertainties remain regarding the clinical application of cefiderocol including how best to use it in real-world settings, variability in microbiological methods for cefiderocol susceptibility testing, and restrictions on prescribing frameworks. There is limited consensus on the most effective clinical indications for cefiderocol, as well as the role of combination therapies to maximize its efficacy. Current guidelines recommend cefiderocol as a last-resort or targeted option for MBL producers [@paul2022; @tamma2024], however, real-world evidence remains limited. The CLEARER survey was designed to assess global availability, restrictions, patterns of use, and perceptions of cefiderocol, including simulated clinical scenarios.
+
+# Methods
+
+A cross-sectional online survey was disseminated via GARDP, ESCMID working groups, and academic collaborations between May and September 2023. The questionnaire covered seven domains: (1) respondent demographics, (2) guidelines and stewardship access, (3) local multidrug-resistant (MDR) bacteria epidemiology, (4) microbiology tools, (5) cefiderocol availability and prescribing restrictions, (6) perceptions of efficacy by pathogen and site of infection, and (7) decision-making in clinical vignettes. Snowball sampling was used, yielding 58 responses from 31 countries across different WHO regions, as shown in **Figure 1**. Data were summarized using descriptive statistics. Analyses were conducted in R (version `r paste(R.version$major, R.version$minor, sep = ".")`). No ethics approval was required due to voluntary and anonymous participation.
+
+# Results
+
+Respondents represented all inhabited continents, with Europe accounting for more than half of the participating countries. Most were Infectious Diseases (ID) specialists (62%) or clinical microbiologists (17%), with the majority having more than six years of experience in their field and based in large teaching hospitals with over 500 beds.\
+
+Cefiderocol availability was reported in 13 countries, mainly within Europe (Italy, France, Germany, Switzerland, United Kingdom, Netherlands, Sweden, Ireland), and also in the United States, Israel, United Arab Emirates, Cyprus, and Australia.
+
+The following results refer exclusively to responses from institutions where cefiderocol was available.  In most sites (23/29; 79%), cefiderocol use was restricted by the pharmacy and required approval from an ID physician. The number of cefiderocol prescriptions were low, usually fewer than two per month, but some clinicians had prior access through compassionate use during the COVID-19 pandemic (16/29; 55%) or via clinical trials (4/29; 14%). Two thirds (19/29; 66 %) of the users reported using clinical guidelines for managing MDR-GNB, with the majority referring to local (16/29; 55%) or national guidelines (13/29; 45%), while international guidelines were less commonly used. An AMS team was available for consultation in 93% (27/29) of cases.
+
+Surveillance data on MDR-GNB were routinely collected in 93% (27/29) of hospitals. KPC was the most frequent carbapenemase detected, followed by OXA-48 and NDM. Half of respondents reported access to cefiderocol susceptibility testing, most commonly evaluated by disc diffusion method performed when MBL production was detected or upon specialist’s request.
+
+Molecular methods for carbapenemase detection were available for 93% of respondents, while phenotypic methods were used by 45% of them.
+
+Perceived efficacy varied by pathogen as reported in **Figure 2**. For carbapenem-resistant Enterobacterales (CRE), 87% (25/29) considered cefiderocol highly or moderately effective, especially for non-MBL strains. For MBL-producing CRE, most respondents supported its use, often as second-line after ceftazidime-avibactam plus aztreonam. For carbapenem-resistant *Pseudomonas aeruginosa* (CRPA), however, only 38% (11/29) would use cefiderocol, increasing to 41% (12/29) for MBL-producing isolates, though often as second choice. For carbapenem-resistant *Acinetobacter baumannii* (CRAB), 59% (17/29) of prescribers considered cefiderocol as an option, but efficacy was mostly rated as moderate (59%, 17/29) or low (17%, 5/29). Across infection sites, the overall perception of efficacy was highest for cUTIs, moderate for bloodstream infections (BSI) and pneumonia, and lowest for central nervous system (CNS) infections.
+
+Combination therapy was frequently considered: 48% (14/29) reported using cefiderocol with other antibiotics, particularly polymyxins or aminoglycosides, mainly to prevent the emergence of resistance or in case of septic shock. When asked about target pathogens, 25% of respondents indicated they would use cefiderocol for CRE, 42% for CRPA, and 59% for CRAB. Up to 17% of respondents would consider cefiderocol off-label dosing, mainly in case of therapeutic drug monitoring adjustments (80%) or increased dose for septic shock (10%) or aiming to improve CNS penetration (10%)
+
+Clinical scenarios highlighted that, in practice, cefiderocol was often used empirically for suspected CRAB infections or targeted in confirmed infections, sometimes beyond what guidelines recommend. For MBL-producing Enterobacterales, ceftazidime-avibactam plus aztreonam was usually preferred. In real-world clinical scenarios, compared to theoretical questions, cefiderocol was used more frequently for CRAB and MBL-producing pathogens, often in combination with older antibiotics. Notably, 14% (4/29) of the respondents reported that they would consider cefiderocol monotherapy for CRAB infections, despite current guidelines advising against monotherapy in this setting [@paul2022; @tamma2024].
+
+# Discussion and conclusions
+
+This study contributes to understanding how cefiderocol is used and perceived globally, especially in the treatment of MDR-GNB. While widely regarded as effective against CRE and CRPA, some concerns persist regarding its efficacy against CRAB and MBL-producing pathogens. Cefiderocol use is predominantly guided by AMS principles, reserving its primary role in severe, difficult-to-treat infections. Cefiderocol is mainly employed as a second-line agent for MBL-producing CRE and CRPA, often following ceftazidime-avibactam plus aztreonam. The high perceived efficacy for CRE and CRPA suggests clinicians’ confidence in cefiderocol’s activity against these pathogens, while the uncertainty surrounding its role in CRAB infections highlights ongoing doubts despite limited treatment options. The tendency to consider cefiderocol for CRAB cases likely reflects both the lack of effective alternatives and the influence of emerging real-world evidence showing outcomes more favorable than those reported in CREDIBLE-CR [@bassetti2021; @Gatti2024] . Notably, many of the real world studies compared cefiderocol in monotherapy or combination therapy against heterogeneous regimens, including different drugs usually in combination [@falcone2022; @russo2023; @rando2023]. This lack of real world evidence may have led to further uncertainties regarding the best treatment strategies for CRAB, with less consensus and more heterogeneity in the questionnaire responses.
+
+Cefiderocol use in real-world simulated settings is highly context-dependent, influenced by pathogen type, infection severity, and available treatment options. Combination therapy is frequently employed, particularly for CRAB and septic shock, to optimize outcomes and mitigate resistance, though in clinical scenarios 14% of respondents would use cefiderocol monotherapy for CRAB. Treatment decisions in clinical vignettes further underscored the divergence between theoretical recommendations and real-world practice, with cefiderocol being used more often for CRAB and MBL-producing bacteria than guideline-based approaches might suggest. These findings highlight the need for further research to define cefiderocol optimal role, particularly in the treatment of CRAB infections and in comparison to newer BL/BLI  combinations for the treatment of CRE and CRPA infections. Main points and open issues are reported in **Table 1**.
+
+It is important to note that our study has some limitations, including a small sample size and potential geographic bias, as Europe was the most represented continent. However, the validity of the results is supported by the high level of expertise among respondents and the depth  of the questionnaire that effectively captures diverse and complex clinical contexts, as well as patterns of cefiderocol use. Although cefiderocol is a valuable option for MBL-producing pathogens, debate remains over its positioning as a first- or second-line agent, reflecting divergent guideline recommendations [@paul2022; @tamma2024]. Concerns regarding the use of cefiderocol monotherapy in the setting of  MBL-producing pathogens have been also highlighted in the recent GAME CHANGER trial where higher absolute all-cause mortality was observed in patients treated with cefiderocol compared to standard-of-care, both at 14 and 30 days [@paterson2025]. Limited availability in regions with high resistance rates further underscores the need for collaboration among scientific communities, policymakers, and pharmaceutical companies to enhance access and optimize treatment strategies.
+
+In conclusion, cefiderocol represents a critical tool in the management of MDR-GNB infections, but its role is contingent on clinical context, emerging evidence, and evolving treatment protocols. Further observational studies and randomized controlled trials are necessary to find its position in the treatment of CRAB and to refine its use, particularly relative to BL/BLI agents. Strengthening AMS programs and ensuring equitable access are essential to maximize cefiderocol impact in combating antimicrobial resistance.
+
+## Acknowledgments
+
+```{r}
+library(pacman)
+p_load(tidyverse, lubridate, gt, glue, Hmisc, REDCapDM, readxl, janitor, gtExtras)
+
+authors <- read_excel("Data/CLEARER_working group_EOI.xlsx") %>% 
+  clean_names()
+
+authors_sorted <- authors %>%
+  mutate(
+    last_name = str_trim(last_name),
+    first_name = str_trim(first_name)
+  ) %>%
+  arrange(last_name, first_name) %>% 
+  mutate(author = paste(first_name, last_name, sep = " "))
+
+author_list <- paste(authors_sorted$author, collapse = ", ")
+
+```
+
+The following individuals are members of the GARDP CLEARER Study Group: `r author_list`.
+
+```{r}
+# dataset <- REDCapDM::redcap_data(
+#   data_path = "Data/CefiderocolClinicalS_R_2026-01-12_1829.R"
+# )
+```
+
+```{r}
+
+tbl_findings <-tribble(
+  ~Section, ~Finding,
+  "Epidemiology burden",
+  "- 40% of respondents reported high rates of **CRAB** and **CRPA** (>10/100 blood culture isolates).\n- These were perceived as the most difficult-to-treat pathogens due to limited options.",
+  
+  "Microbiology / testing",
+  "- ~50% routinely performed **cefiderocol** susceptibility testing.\n- Mainly if a **carbapenemase** was detected or upon clinicians’ request.\n- Methods: disc diffusion or broth microdilution.",
+  
+  "Availability / restrictions",
+  "- In ~80% of cases, **cefiderocol** use was restricted by hospital pharmacy protocols and/or physician recommendation.",
+  
+  "Perceived efficacy by pathogen",
+  "- Mostly moderate/high across pathogens (≈76–87%).\n- Lower perceived high efficacy for **CRAB** (21%) and **MBL-CRAB** (17%).",
+  
+  "Intended use despite lower efficacy",
+  "- 50% would use **cefiderocol** for CRAB infections (59%).\n- 41% would consider it for **MBL-producing CRPA**.",
+  
+  "CRE / MBL-CRPA positioning",
+  "- 95% would use **cefiderocol** for **MBL-producing CRE**.\n- For CRE and MBL-CRPA, cefiderocol often positioned as a **second-line** option (e.g., after ceftazidime-avibactam + aztreonam), or when no alternatives.",
+  
+  "Perceived efficacy",
+  "- High efficacy: **cUTIs** (66%).\n- Moderate efficacy: **BSI** and **HAP-VAP** (>60%).\n- Lower for **CNS** infections (10% high; 55% moderate).",
+  
+  "Decision drivers",
+  "- Primarily for **MBL-producing pathogens** (17–28%; especially in BSIs).\n- If **no alternatives** (56–72%).",
+  
+  "Compared with other drugs",
+  "- Considered more effective/less toxic than **colistin** and **amikacin**.\n- Considered more effective than **meropenem**, **fosfomycin**, and **tigecycline**.\n- For newer BLBLIs (e.g., CZA, C/T, MEM/VAB, IMI/REL) and **plazomicin**: perceived data limitations and/or effect depends on pathogen/site."
+) %>% 
+ gt(rowname_col = "Section") %>%
+  tab_caption(md("**Table 1.** Summary of key findings.CRAB: carbapenem-resistant *Acinetobacter baumannii*; CRPA: carbapenem-resistant *Pseudomonas aeruginosa*; BSI: bloodstream infection; HAP-VAP: hospital-/ventilator-associated pneumonia; CNS: central nervous system; cUTI: complicated urinary tract infection; MBL: metallo-β-lactamase; CRE: carbapenem-resistant Enterobacterales; BLBLI: β-lactam/β-lactamase inhibitor.")) %>%
+  cols_label(Finding = "Key findings") %>%
+  fmt_markdown(columns = c(Finding)) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_stub()
+  ) %>%
+    tab_style(
+    style = cell_text(align = "justify"),
+    locations = cells_title(groups = "title")
+  ) %>% 
+  gt_theme_pff()
+
+gt::gtsave(tbl_findings, "images/survey_table_findings.png",
+           zoom = 5,
+           vwidth = 2400,
+           vheight = 2000
+           )
+```
+
+![](images/survey_table_findings.png){fig-align="center"}
+
+## References
+
+::: {#refs}
+:::
