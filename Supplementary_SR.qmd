@@ -17,6 +17,7 @@ author:
     affiliation:
       - ref: verona
   - name: Alessia Savoldi
+    orcid: 0000-0003-1873-5323
     affiliation:
       - ref: verona
   - name: Renata Da Costa
@@ -29,10 +30,12 @@ author:
     affiliation:
       - ref: gardp
   - name: Evelina Tacconelli
+    orcid: 0000-0003-2010-4977
     affiliation:
       - ref: verona
   - name: Matteo Morra
     corresponding: true
+    orcid: 0000-0002-1684-0261
     email: matteo.morra@univr.it
     affiliation:
       - ref: verona

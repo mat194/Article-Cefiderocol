@@ -139,7 +139,7 @@ In conclusion, cefiderocol represents a critical tool in the management of MDR-G
 
 ```{r}
 library(pacman)
-p_load(tidyverse, lubridate, gt, glue, Hmisc, REDCapDM, readxl, janitor, gtExtras)
+p_load(tidyverse, lubridate, gt, glue, Hmisc, REDCapDM, readxl, janitor, gtExtras, rnaturalearth, rnaturalearthdata, sf, RColorBrewer, patchwork)
 
 authors <- read_excel("Data/CLEARER_working group_EOI.xlsx") %>% 
   clean_names()
@@ -159,10 +159,89 @@ author_list <- paste(authors_sorted$author, collapse = ", ")
 The following individuals are members of the GARDP CLEARER Study Group: `r author_list`.
 
 ```{r}
-# dataset <- REDCapDM::redcap_data(
-#   data_path = "Data/CefiderocolClinicalS_R_2026-01-12_1829.R"
-# )
+dataset <- REDCapDM::redcap_data(
+  data_path = "Data/CefiderocolClinicalS_R_2026-01-12_1829.R",
+  dic_path ="Data/CefiderocolClinicalSurvey_DataDictionary_2026-01-13.csv"
+)
+
+db <- REDCapDM::rd_transform(dataset)
+
 ```
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+country_counts <- db$data %>%
+  count(country, name = "n")
+
+bar_chart <- db$data %>% 
+  count(specialization)
+
+world_map <- world %>%
+  left_join(country_counts, by = c("name" = "country")) %>% 
+  filter(continent != "Antarctica")
+
+p_map <- ggplot(world_map) +
+  geom_sf(aes(fill = n), color = "grey40", size = 0.15) +
+
+  scale_fill_distiller(
+    palette = "YlOrRd",     
+    direction = 1,
+    na.value = "grey92",
+    name = "Respondents",
+    breaks = scales::pretty_breaks(n = 3)
+  ) +
+  coord_sf(crs =  "+proj=robin +lat_0=0 +lon_0=0 +x0=0 +y0=0") +
+  theme_void(base_size = 14) +
+  theme(
+    legend.position = c(0.10, 0.12),
+    legend.justification = c(0, 0),    
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width = unit(0.4, "cm"),
+    plot.title = element_text(hjust = 0.5, size = 16,
+                              face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  ) +
+  labs(
+    title = "Figure 1. Geographic distribution and specialisation of survey respondents",
+    subtitle = "Number of respondents by country (n=58 from 31 countries)"
+  )
+
+p_bar <- ggplot(bar_chart,
+                aes(x = reorder(specialization, n), y = n, fill = specialization)) +
+  geom_col(width = 0.7, show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_brewer(palette = "Set2") +
+  labs(x = NULL, y = NULL, title = "Specialization") +
+  theme_minimal(base_size = 8) +
+  theme(
+    plot.title = element_text(size = 8, face = "bold", hjust = 0),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.y = element_text(size = 7),
+    axis.text.x = element_text(size = 7),
+    panel.border = element_rect(colour = "black", fill = NA, linewidth= 0.6)
+  )
+
+
+p_map +
+  inset_element(
+    p_bar,
+    left   = 0.62,
+    bottom = 0.05,
+    right  = 0.98,
+    top    = 0.42,
+    align_to = "full"
+  )
+
+ggsave("images/survey_map.png",
+       width = 8,
+       height = 6,
+       dpi = 300)
+  
+```
+
+![](images/survey_map_specialization.png){fig-align="center"}
 
 ```{r}
 
