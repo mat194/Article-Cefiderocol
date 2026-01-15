@@ -1,0 +1,46 @@
+---
+title: "Cover letter"
+author:
+  - name: Evelina Tacconelli, MD, PhD
+    affiliation: Division of Infectious Diseases, University of Verona, Italy
+date: today
+format:
+  pdf:
+    margin-left: 3cm
+    margin-right: 3cm
+    margin-top: 3cm
+    margin-bottom: 3cm
+  docx: default
+lang: en
+---
+
+**To:**\
+Editor-in-Chief\
+*International Journal of Infectious Diseases*
+
+------------------------------------------------------------------------
+
+Dear Editor,
+
+On behalf of my co-authors, I am pleased to submit our manuscript entitled **“Exploring the evidence for use of cefiderocol as part of combination therapies: a systematic review of in vitro, in vivo, and clinical studies”** for consideration for publication in the *International Journal of Infectious Diseases*.
+
+Cefiderocol has rapidly become a cornerstone in the management of infections caused by carbapenem-resistant Gram-negative bacteria. However, despite its increasing clinical use, there is substantial uncertainty regarding when and how it should be combined with other agents.
+
+To address this critical knowledge gap, we conducted a comprehensive systematic review integrating *in vitro* synergy studies, *in vivo* experimental models, and clinical data, including an exploratory meta-analysis of comparative clinical cohorts. To our knowledge, this is the most extensive synthesis to date evaluating cefiderocol-based combination therapy across translational and clinical domains.
+
+We believe this manuscript fits well within the scope and readership of the *International Journal of Infectious Diseases*, as it addresses a highly relevant and timely clinical problem in the management of antimicrobial-resistant infections, combining mechanistic insights with real-world clinical evidence.
+
+This manuscript has not been published previously and is not under consideration for publication elsewhere. All authors have approved the submitted versions and declare no conflicts of interest. These studies were conducted as part of the GARDP-supported CLEARER project.
+
+We sincerely thank you for considering our work and would be pleased to respond to any questions or revisions.
+
+For further correspondence, please contact my colleague Dr. Matteo Morra at: matteo.morra\@univr.it
+
+Yours sincerely,
+
+**Evelina Tacconelli, MD, PhD**\
+Head of Infectious Diseases, FESCMID\
+Infectious Diseases Center for trAnslational REsearch (ID-CARE)\
+Dept. of Diagnostic and Public Health, University of Verona, Italy\
+Department of Excellence 2023-2027\
+Chief Scientific Officer ECRAID
