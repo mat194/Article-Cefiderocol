@@ -1,10 +1,11 @@
 ---
 title: "Cover letter"
 author:
-  - name: Evelina Tacconelli, MD, PhD
+  - name: Matteo Morra
     affiliation: Division of Infectious Diseases, University of Verona, Italy
 date: today
-format:
+date-format: "DD MMMM, YYYY"
+format: 
   pdf:
     margin-left: 3cm
     margin-right: 3cm
@@ -30,17 +31,14 @@ To address this critical knowledge gap, we conducted a comprehensive systematic 
 
 We believe this manuscript fits well within the scope and readership of the *International Journal of Infectious Diseases*, as it addresses a highly relevant and timely clinical problem in the management of antimicrobial-resistant infections, combining mechanistic insights with real-world clinical evidence.
 
-This manuscript has not been published previously and is not under consideration for publication elsewhere. All authors have approved the submitted versions and declare no conflicts of interest. These studies were conducted as part of the GARDP-supported CLEARER project.
+This manuscript has not been published previously and is not under consideration for publication elsewhere. All authors have approved the submitted versions and declare no conflicts of interest. This work was part of the CLEARER project (Current cLinical scEnARios for the use of cefidErocol in multidrug-Resistant infections: a case study-based approach) supported by the Global Antibiotic Research and Development Partnership ([GARDP](https://gardp.org/?gad_source=1&gad_campaignid=21197320716&gbraid=0AAAAACOTegsrNeqUFE8SCvkOwahZWN56L&gclid=CjwKCAiA4KfLBhB0EiwAUY7GAS3gHm6oPKDIyaOntrCHaLJTwe0eQ0aywDie-GLE7MC-Dl9UaBL0ORoChrwQAvD_BwE)).
 
 We sincerely thank you for considering our work and would be pleased to respond to any questions or revisions.
 
-For further correspondence, please contact my colleague Dr. Matteo Morra at: matteo.morra\@univr.it
+For further correspondence, please contact me at: matteo.morra\@univr.it
 
 Yours sincerely,
 
-**Evelina Tacconelli, MD, PhD**\
-Head of Infectious Diseases, FESCMID\
-Infectious Diseases Center for trAnslational REsearch (ID-CARE)\
-Dept. of Diagnostic and Public Health, University of Verona, Italy\
-Department of Excellence 2023-2027\
-Chief Scientific Officer ECRAID
+**Matteo Morra, MD, PhD student**\
+Infectious Diseases Center for trAnslational REsearch ([ID-CARE](http://www.id-care.net/ "http://www.id-care.net/"))\
+Dep. of Diagnostics and Public Health - University of Verona (Italy)
