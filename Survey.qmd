@@ -3,6 +3,14 @@ title: "CLEARER study: a global survey on cefiderocol use in multidrug-resistant
 
 author:
   - name: Marco Meroi
+    equal-contributor: true
+    affiliation:
+      - ref: verona
+      
+  - name: Matteo Morra
+    equal-contributor: true
+    corresponding: true
+    email: matteo.morra@univr.it
     affiliation:
       - ref: verona
 
@@ -29,14 +37,13 @@ author:
   - name: Jennifer Cohn
     affiliation:
       - ref: gardp
-
-  - name: Evelina Tacconelli
+      
+  - name: Alessia Savoldi
+    orcid: 0000-0003-1873-5323
     affiliation:
       - ref: verona
 
-  - name: Matteo Morra
-    corresponding: true
-    email: matteo.morra@univr.it
+  - name: Evelina Tacconelli
     affiliation:
       - ref: verona
 
@@ -95,33 +102,127 @@ format:
 #       cite-style: number
 ---
 
+```{r}
+#lapply(paste('package:',names(sessionInfo()$otherPkgs),sep=""),detach,character.only=TRUE,unload=TRUE)
+library(REDCapDM)
+dataset <- REDCapDM::redcap_data(
+  data_path = "Data/CefiderocolClinicalS_R_2026-01-12_1829.R",
+  dic_path ="Data/CefiderocolClinicalSurvey_DataDictionary_2026-01-13.csv"
+)
+db <- REDCapDM::rd_transform(dataset)
+
+library(pacman)
+p_load(tidyverse, lubridate, gt, glue, Hmisc, REDCapDM, readxl, janitor, gtExtras, rnaturalearth, rnaturalearthdata, sf, RColorBrewer, patchwork, likert, scales, forcats, gtsummary)
+
+results_to_show <- function(data_base, value, column) {
+   data_base %>%
+    dplyr::filter(!is.na({{column}})) %>%
+    summarise(
+      total = n(),
+      n_yes = sum({{column}} %in% value, na.rm = TRUE),
+      percentage = scales::percent(n_yes / total),
+      to_show = paste0(n_yes, "/", total, " ; ", percentage),
+      to_show2 = paste0(percentage, " ( ", n_yes, "/", total, " ) ")
+    )
+}
+
+year <- db$data %>%
+  mutate(year = year(ymd_hms(questionnaire_timestamp))) %>%
+  filter(!is.na(year)) %>%
+  distinct(year) %>%
+  pull(year)
+
+months <- db$data %>%
+  mutate(month = month(ymd_hms(questionnaire_timestamp), label = TRUE, abbr = FALSE, locale = "eng")) %>%
+  filter(!is.na(month)) %>%
+  summarise(min_months = min(month), max_months = max(month))
+
+length_survey <-  read_csv("Data/CefiderocolClinicalSurvey_DataDictionary_2026-01-13.csv") %>% nrow()
+partecipants <- n_distinct(db$data$record_id, na.rm = TRUE)
+countries <- n_distinct(db$data$country, na.rm = TRUE)
+
+country_europe <- c("Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden")
+
+experts_europe <- db$data %>%
+  mutate(europe = if_else(country %in% country_europe, "Europe", "Other")) %>%
+  group_by(europe) %>%
+  summarise(
+    n = n_distinct(record_id, na.rm = TRUE),
+    percent = scales::percent(n / partecipants)
+  ) %>% 
+  group_by(europe) %>%
+  group_split() %>%
+  setNames(c("Europe", "Other"))
+
+fdc_available <-  n_distinct(db$data %>% filter(avail_cefid == "Yes") %>% pull(country), na.rm = TRUE)
+fdc_available_list <- db$data %>%
+  filter(avail_cefid == "Yes") %>%
+  count(country) %>%
+  arrange(desc(n)) %>%
+  pull(country) 
+fdc_available_list <- paste(paste(fdc_available_list[-length(fdc_available_list)], collapse = ", "), "and", fdc_available_list[length(fdc_available_list)])
+
+n_infectivologists <- results_to_show(db$data,"Infectious Diseases specialist", specialization)
+n_microbiologists <- results_to_show(db$data,"Clinical Microbiologist", specialization)
+
+
+fdc_available_data <- db$data %>% filter(avail_cefid == "Yes")
+pharma_restriction <- results_to_show(fdc_available_data,"Yes", pharmacy_restrict)
+fdc_rct <- results_to_show(fdc_available_data,"Yes",rct_cefid)
+fdc_compassionate <- results_to_show(fdc_available_data,"Yes", compass)
+fdc_guidelies <- results_to_show(fdc_available_data, "Yes", guidelines)
+fdc_guidelies_local <- results_to_show(fdc_available_data,"Yes", available_guidelines_local)
+fdc_guidelies_national <- results_to_show(fdc_available_data,"Yes", available_guidelines_national)
+fdc_guidelies_international <- results_to_show(fdc_available_data,"Yes", available_guidelines_international)
+ams_team <- results_to_show(fdc_available_data, value = "Yes", stewardship)
+surveillance <- results_to_show(fdc_available_data, "Yes", surveill_cr)
+molecular_avaible <- results_to_show(db$data, "Yes", kindoftestcr_molecular_methods_pcr)
+phenotypic_avaible <- results_to_show(db$data, "Yes", kindoftestcr_phenotypic_methods)
+
+
+yes_options <- c("Yes, second choice after ceftazidime/avibactam plus aztreonam combination",
+                 "Yes, if there are no alternative regimens",
+                 "Yes, first choice")
+
+cre <- results_to_show(fdc_available_data,c("High","Moderate"), perceptcre_n_mb)
+crpa <- results_to_show(fdc_available_data,"Yes", cefi_crpa)
+crpa_mbl <- results_to_show(fdc_available_data, yes_options, cefi_crpandm)
+crab <- results_to_show(fdc_available_data,"Yes", cefi_crab)
+crab_moderate <- results_to_show(fdc_available_data,"Moderate", percept_crab_n_m)
+crab_low <- results_to_show(fdc_available_data,"Low", percept_crab_n_m)
+crab_high <- results_to_show(fdc_available_data,"High", percept_crab_n_m)
+
+combo <- results_to_show(fdc_available_data,"In combination", cefi_crab_combo)
+```
+
 # Abstract
 
-A survey was conducted in 2023 to assess cefiderocol availability, use, and perceived efficacy. Responses from 58 specialists in 31 countries showed that cefiderocol was available in only a minority of countries, mainly in Europe, and generally reserved for severe multidrug-resistant infections. It was considered highly effective against CRE and CR Pseudomonas, with uncertain efficacy for CRAB, and more frequently used in clinical vignettes than theoretical answers, often in combination with other agents.
+A `r length_survey` survey was conducted in `r year` to assess cefiderocol availability, use, and perceived efficacy. Responses from `r partecipants` experts across `r countries` countries showed that cefiderocol was available in only a minority of countries, mainly in Europe, and generally reserved for severe multidrug-resistant infections. It was considered highly effective against Carbapenem-resistant (CR) Enterobacterales and CR *Pseudomonas*, with uncertain efficacy for CR *Acinetobacter baumannii*, and was more frequently selected in case vignettes than in theoretical considerations, indicating a tendency toward broader practical use compared with theoretical positioning.
 
 # Introduction
 
-Antimicrobial resistance (AMR) is a major public health challenge, with carbapenem-resistant Gram-negative bacteria (CR-GNB) responsible for significant morbidity and mortality [@naghavi2024] . Cefiderocol, a siderophore cephalosporin with enhanced membrane penetration, shows potent in vitro activity against Enterobacterales, *Pseudomonas aeruginosa*, *Acinetobacter baumannii*, and *Stenotrophomonas maltophilia*, including metallo-β-lactamase (MBL) producers [@ito2018; @Karlowsky2022]. Clinical trials have demonstrated cefiderocol non-inferiority for complicated urinary tract infections (cUTIs) and hospital/ventilator-associated pneumonia (HAP-VAP) [@Portsmouth2018; @Wunderink2021], but these studies were not focused on infections produced by CR-GNB. The CREDIBLE-CR trial was the only study to specifically evaluate these infections and its results suggested a potential association between cefiderocol use and higher mortality in the subgroup of CRAB patients [@bassetti2021]. Several uncertainties remain regarding the clinical application of cefiderocol including how best to use it in real-world settings, variability in microbiological methods for cefiderocol susceptibility testing, and restrictions on prescribing frameworks. There is limited consensus on the most effective clinical indications for cefiderocol, as well as the role of combination therapies to maximize its efficacy. Current guidelines recommend cefiderocol as a last-resort or targeted option for MBL producers [@paul2022; @tamma2024], however, real-world evidence remains limited. The CLEARER survey was designed to assess global availability, restrictions, patterns of use, and perceptions of cefiderocol, including simulated clinical scenarios.
+Antimicrobial resistance (AMR) is a major public health challenge, with carbapenem-resistant Gram-negative bacteria (CR-GNB) responsible for significant morbidity and mortality [@naghavi2024] . Cefiderocol, a siderophore cephalosporin with enhanced membrane penetration, shows potent in vitro activity against Enterobacterales, *Pseudomonas aeruginosa*, *Acinetobacter baumannii*, and *Stenotrophomonas maltophilia*, including metallo-β-lactamase (MBL) producers [@ito2018; @Karlowsky2022]. Clinical trials have demonstrated cefiderocol non-inferiority for complicated urinary tract infections (cUTIs) and hospital/ventilator-associated pneumonia (HAP-VAP) [@Portsmouth2018; @Wunderink2021], but these studies were not focused on infections sustained by CR-GNB. The CREDIBLE-CR trial was the only study to specifically evaluate these infections and its results suggested a potential association between cefiderocol use and higher mortality in the subgroup of CRAB patients [@bassetti2021]. Several uncertainties remain regarding the clinical application of cefiderocol including how best to use it in real-world settings, variability in microbiological methods for cefiderocol susceptibility testing, and restrictions on prescribing frameworks. There is limited consensus on the most effective clinical indications for cefiderocol, as well as the role of combination therapies to maximize its efficacy. Current guidelines recommend cefiderocol as a last-resort or targeted option for MBL producers [@paul2022; @tamma2024], however, real-world evidence remains limited. The CLEARER survey was designed to assess global availability, restrictions, patterns of use, and perceptions of cefiderocol, including simulated clinical scenarios.
 
 # Methods
 
-A cross-sectional online survey was disseminated via GARDP, ESCMID working groups, and academic collaborations between May and September 2023. The questionnaire covered seven domains: (1) respondent demographics, (2) guidelines and stewardship access, (3) local multidrug-resistant (MDR) bacteria epidemiology, (4) microbiology tools, (5) cefiderocol availability and prescribing restrictions, (6) perceptions of efficacy by pathogen and site of infection, and (7) decision-making in clinical vignettes. Snowball sampling was used, yielding 58 responses from 31 countries across different WHO regions, as shown in **Figure 1**. Data were summarized using descriptive statistics. Analyses were conducted in R (version `r paste(R.version$major, R.version$minor, sep = ".")`). No ethics approval was required due to voluntary and anonymous participation.
+A cross-sectional, web-based survey designed using RedCap was disseminated via GARDP, ESCMID working groups, and academic collaborations between. The questionnaire covered seven domains: (1) respondent demographics, (2) guidelines and stewardship access, (3) local multidrug-resistant (MDR) bacteria epidemiology, (4) microbiology tools, (5) cefiderocol availability and prescribing restrictions, (6) perceptions of efficacy by pathogen and site of infection, and (7) decision-making in clinical vignettes. Snowball sampling was employed to expand respondent recruitment. Data were summarized using descriptive statistics, and all analyses were conducted in R (version `r paste(R.version$major, R.version$minor, sep = ".")`). Ethical approval was not required as participation was voluntary, anonymous, and involved no collection of identifiable data.
 
 # Results
 
-Respondents represented all inhabited continents, with Europe accounting for more than half of the participating countries. Most were Infectious Diseases (ID) specialists (62%) or clinical microbiologists (17%), with the majority having more than six years of experience in their field and based in large teaching hospitals with over 500 beds.\
+The survey was launched in `r paste0(months$min_months, " ",year)` and was kept online until `r paste0(months$max_months, " ",year)`. A total of `r partecipants` respondents completed the survey, accounting for `r countries` countries (`r experts_europe$Europe$percent ` from Europe); **Figure 1**. Regarding the experts’ background, most were Infectious Diseases (ID) specialists (`r n_infectivologists$to_show`) or clinical microbiologists (`r n_microbiologists$to_show`), with the majority having more than six years of experience in their field and based in large teaching hospitals with over 500 beds. The full demographic and professional characteristics of the respondents are presented in **Table 1**.
 
-Cefiderocol availability was reported in 13 countries, mainly within Europe (Italy, France, Germany, Switzerland, United Kingdom, Netherlands, Sweden, Ireland), and also in the United States, Israel, United Arab Emirates, Cyprus, and Australia.
+Cefiderocol availability was reported in `r fdc_available` countries (`r fdc_available_list`).
 
-The following results refer exclusively to responses from institutions where cefiderocol was available.  In most sites (23/29; 79%), cefiderocol use was restricted by the pharmacy and required approval from an ID physician. The number of cefiderocol prescriptions were low, usually fewer than two per month, but some clinicians had prior access through compassionate use during the COVID-19 pandemic (16/29; 55%) or via clinical trials (4/29; 14%). Two thirds (19/29; 66 %) of the users reported using clinical guidelines for managing MDR-GNB, with the majority referring to local (16/29; 55%) or national guidelines (13/29; 45%), while international guidelines were less commonly used. An AMS team was available for consultation in 93% (27/29) of cases.
+Focusing on countries reporting cefiderocol availability, in most sites (`r pharma_restriction$to_show`) cefiderocol use was restricted by the pharmacy and required approval from an ID physician. The number of cefiderocol prescriptions were low, usually fewer than two per month, however some clinicians had prior access through compassionate use during the COVID-19 pandemic (`r fdc_compassionate$to_show`) or *via* clinical trials (`r fdc_rct$to_show`). Two thirds (`r fdc_guidelies$to_show`) of the users reported cefiderocol use in accordance with clinical guideline, with the majority referring to local (`r fdc_guidelies_local$to_show`) or national guidelines (`r fdc_guidelies_national$to_show`), while international guidelines were less commonly used. An Antimicrobial stewardship (AMS) team was available for consultation in `r ams_team$to_show2` of cases.
 
-Surveillance data on MDR-GNB were routinely collected in 93% (27/29) of hospitals. KPC was the most frequent carbapenemase detected, followed by OXA-48 and NDM. Half of respondents reported access to cefiderocol susceptibility testing, most commonly evaluated by disc diffusion method performed when MBL production was detected or upon specialist’s request.
+Surveillance data on MDR-GNB were routinely collected in `r surveillance$to_show2` of hospitals. KPC was the most frequent carbapenemase detected, followed by OXA-48 and NDM. Half of respondents reported access to cefiderocol susceptibility testing, most commonly evaluated by disc diffusion method performed when MBL production was detected or upon specialist’s request.
 
-Molecular methods for carbapenemase detection were available for 93% of respondents, while phenotypic methods were used by 45% of them.
+Molecular methods for carbapenemase detection were available for `r molecular_avaible$percentage` of respondents, while use of phenotypic methods were reported by `r phenotypic_avaible$percentage` of them.
 
-Perceived efficacy varied by pathogen as reported in **Figure 2**. For carbapenem-resistant Enterobacterales (CRE), 87% (25/29) considered cefiderocol highly or moderately effective, especially for non-MBL strains. For MBL-producing CRE, most respondents supported its use, often as second-line after ceftazidime-avibactam plus aztreonam. For carbapenem-resistant *Pseudomonas aeruginosa* (CRPA), however, only 38% (11/29) would use cefiderocol, increasing to 41% (12/29) for MBL-producing isolates, though often as second choice. For carbapenem-resistant *Acinetobacter baumannii* (CRAB), 59% (17/29) of prescribers considered cefiderocol as an option, but efficacy was mostly rated as moderate (59%, 17/29) or low (17%, 5/29). Across infection sites, the overall perception of efficacy was highest for cUTIs, moderate for bloodstream infections (BSI) and pneumonia, and lowest for central nervous system (CNS) infections.
+Perceived efficacy varied by pathogen as reported in **Figure 2**. For CR Enterobacterales, `r cre$to_show2` considered cefiderocol highly or moderately effective, especially for non-MBL strains. For MBL-producing CRE, most respondents supported its use, often as second-line after ceftazidime-avibactam plus aztreonam. 
+However, for CR *Pseudomonas aeruginosa*, only `r crpa$to_show2` would use cefiderocol, increasing to `r crpa_mbl$to_show2` for MBL-producing isolates, though often as second choice. For CR *Acinetobacter baumannii*, `r crab$to_show2` of prescribers considered cefiderocol as an option, but efficacy was mostly rated as moderate (`r crab_moderate$to_show2`) or low (`r crab_low$to_show2`). Across infection sites, the overall perception of efficacy was highest for cUTIs, moderate for bloodstream infections (BSI) and pneumonia, and lowest for central nervous system (CNS) infections.
 
-Combination therapy was frequently considered: 48% (14/29) reported using cefiderocol with other antibiotics, particularly polymyxins or aminoglycosides, mainly to prevent the emergence of resistance or in case of septic shock. When asked about target pathogens, 25% of respondents indicated they would use cefiderocol for CRE, 42% for CRPA, and 59% for CRAB. Up to 17% of respondents would consider cefiderocol off-label dosing, mainly in case of therapeutic drug monitoring adjustments (80%) or increased dose for septic shock (10%) or aiming to improve CNS penetration (10%)
+Combination therapy was frequently considered: `r combo$to_show2` reported using cefiderocol with other antibiotics, particularly polymyxins or aminoglycosides, mainly to prevent the emergence of resistance or in case of septic shock.
 
 Clinical scenarios highlighted that, in practice, cefiderocol was often used empirically for suspected CRAB infections or targeted in confirmed infections, sometimes beyond what guidelines recommend. For MBL-producing Enterobacterales, ceftazidime-avibactam plus aztreonam was usually preferred. In real-world clinical scenarios, compared to theoretical questions, cefiderocol was used more frequently for CRAB and MBL-producing pathogens, often in combination with older antibiotics. Notably, 14% (4/29) of the respondents reported that they would consider cefiderocol monotherapy for CRAB infections, despite current guidelines advising against monotherapy in this setting [@paul2022; @tamma2024].
 
@@ -129,7 +230,7 @@ Clinical scenarios highlighted that, in practice, cefiderocol was often used emp
 
 This study contributes to understanding how cefiderocol is used and perceived globally, especially in the treatment of MDR-GNB. While widely regarded as effective against CRE and CRPA, some concerns persist regarding its efficacy against CRAB and MBL-producing pathogens. Cefiderocol use is predominantly guided by AMS principles, reserving its primary role in severe, difficult-to-treat infections. Cefiderocol is mainly employed as a second-line agent for MBL-producing CRE and CRPA, often following ceftazidime-avibactam plus aztreonam. The high perceived efficacy for CRE and CRPA suggests clinicians’ confidence in cefiderocol’s activity against these pathogens, while the uncertainty surrounding its role in CRAB infections highlights ongoing doubts despite limited treatment options. The tendency to consider cefiderocol for CRAB cases likely reflects both the lack of effective alternatives and the influence of emerging real-world evidence showing outcomes more favorable than those reported in CREDIBLE-CR [@bassetti2021; @Gatti2024] . Notably, many of the real world studies compared cefiderocol in monotherapy or combination therapy against heterogeneous regimens, including different drugs usually in combination [@falcone2022; @russo2023; @rando2023]. This lack of real world evidence may have led to further uncertainties regarding the best treatment strategies for CRAB, with less consensus and more heterogeneity in the questionnaire responses.
 
-Cefiderocol use in real-world simulated settings is highly context-dependent, influenced by pathogen type, infection severity, and available treatment options. Combination therapy is frequently employed, particularly for CRAB and septic shock, to optimize outcomes and mitigate resistance, though in clinical scenarios 14% of respondents would use cefiderocol monotherapy for CRAB. Treatment decisions in clinical vignettes further underscored the divergence between theoretical recommendations and real-world practice, with cefiderocol being used more often for CRAB and MBL-producing bacteria than guideline-based approaches might suggest. These findings highlight the need for further research to define cefiderocol optimal role, particularly in the treatment of CRAB infections and in comparison to newer BL/BLI  combinations for the treatment of CRE and CRPA infections. Main points and open issues are reported in **Table 1**.
+Cefiderocol use in real-world simulated settings is highly context-dependent, influenced by pathogen type, infection severity, and available treatment options. Combination therapy is frequently employed, particularly for CRAB and septic shock, to optimize outcomes and mitigate resistance, though in clinical scenarios 14% of respondents would use cefiderocol monotherapy for CRAB. Treatment decisions in clinical vignettes further underscored the divergence between theoretical recommendations and real-world practice, with cefiderocol being used more often for CRAB and MBL-producing bacteria than guideline-based approaches might suggest. These findings highlight the need for further research to define cefiderocol optimal role, particularly in the treatment of CRAB infections and in comparison to newer BL/BLI  combinations for the treatment of CRE and CRPA infections. Main points and open issues are reported in **Table 2**.
 
 It is important to note that our study has some limitations, including a small sample size and potential geographic bias, as Europe was the most represented continent. However, the validity of the results is supported by the high level of expertise among respondents and the depth  of the questionnaire that effectively captures diverse and complex clinical contexts, as well as patterns of cefiderocol use. Although cefiderocol is a valuable option for MBL-producing pathogens, debate remains over its positioning as a first- or second-line agent, reflecting divergent guideline recommendations [@paul2022; @tamma2024]. Concerns regarding the use of cefiderocol monotherapy in the setting of  MBL-producing pathogens have been also highlighted in the recent GAME CHANGER trial where higher absolute all-cause mortality was observed in patients treated with cefiderocol compared to standard-of-care, both at 14 and 30 days [@paterson2025]. Limited availability in regions with high resistance rates further underscores the need for collaboration among scientific communities, policymakers, and pharmaceutical companies to enhance access and optimize treatment strategies.
 
@@ -138,8 +239,6 @@ In conclusion, cefiderocol represents a critical tool in the management of MDR-G
 ## Acknowledgments
 
 ```{r}
-library(pacman)
-p_load(tidyverse, lubridate, gt, glue, Hmisc, REDCapDM, readxl, janitor, gtExtras, rnaturalearth, rnaturalearthdata, sf, RColorBrewer, patchwork)
 
 authors <- read_excel("Data/CLEARER_working group_EOI.xlsx") %>% 
   clean_names()
@@ -159,16 +258,6 @@ author_list <- paste(authors_sorted$author, collapse = ", ")
 The following individuals are members of the GARDP CLEARER Study Group: `r author_list`.
 
 ```{r}
-dataset <- REDCapDM::redcap_data(
-  data_path = "Data/CefiderocolClinicalS_R_2026-01-12_1829.R",
-  dic_path ="Data/CefiderocolClinicalSurvey_DataDictionary_2026-01-13.csv"
-)
-
-db <- REDCapDM::rd_transform(dataset)
-
-```
-
-```{r}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
 country_counts <- db$data %>%
@@ -183,28 +272,37 @@ world_map <- world %>%
 
 p_map <- ggplot(world_map) +
   geom_sf(aes(fill = n), color = "grey40", size = 0.15) +
-
   scale_fill_distiller(
     palette = "YlOrRd",     
     direction = 1,
     na.value = "grey92",
     name = "Respondents",
-    breaks = scales::pretty_breaks(n = 3)
+    breaks = scales::pretty_breaks(n = 3),
+     guide = guide_colorbar(
+      direction = "horizontal",
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = unit(3.0, "cm"),   
+      barheight = unit(0.35, "cm")
+    )
   ) +
   coord_sf(crs =  "+proj=robin +lat_0=0 +lon_0=0 +x0=0 +y0=0") +
   theme_void(base_size = 14) +
   theme(
-    legend.position = c(0.10, 0.12),
-    legend.justification = c(0, 0),    
-    legend.key.height = unit(0.5, "cm"),
-    legend.key.width = unit(0.4, "cm"),
-    plot.title = element_text(hjust = 0.5, size = 16,
-                              face = "bold"),
+    legend.position = c(0.77, 0.045),
+    legend.justification = c(1, 0),
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.key.height = unit(0.4, "cm"),
+    legend.key.width  = unit(1.5, "cm"),
+    legend.title = element_text(size = 8),
+    legend.text  = element_text(size = 8),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5, size = 12)
   ) +
   labs(
     title = "Figure 1. Geographic distribution and specialisation of survey respondents",
-    subtitle = "Number of respondents by country (n=58 from 31 countries)"
+    subtitle = "Number of respondents by country (n = 54 from 28 countries)"
   )
 
 p_bar <- ggplot(bar_chart,
@@ -212,7 +310,7 @@ p_bar <- ggplot(bar_chart,
   geom_col(width = 0.7, show.legend = FALSE) +
   coord_flip() +
   scale_fill_brewer(palette = "Set2") +
-  labs(x = NULL, y = NULL, title = "Specialization") +
+  labs(x = NULL, y = NULL, title = "Background") +
   theme_minimal(base_size = 8) +
   theme(
     plot.title = element_text(size = 8, face = "bold", hjust = 0),
@@ -227,24 +325,121 @@ p_bar <- ggplot(bar_chart,
 p_map +
   inset_element(
     p_bar,
-    left   = 0.62,
-    bottom = 0.05,
-    right  = 0.98,
-    top    = 0.42,
+    left   = 0.00,
+    bottom = 0.00,
+    right  = 0.30,
+    top    = 0.30,
     align_to = "full"
   )
 
 ggsave("images/survey_map.png",
        width = 8,
-       height = 6,
-       dpi = 300)
+       height = 4,
+       dpi = 600)
   
 ```
 
-![](images/survey_map_specialization.png){fig-align="center"}
+![](images/survey_map.png){fig-align="center"}
 
 ```{r}
+#| echo: false
+#| message: false
+#| asis: true
+#| include: true
 
+columns_table1 <- c(
+  "region_un",
+  "specialization",
+  "experience",
+  "teach_hosp",
+  "number_beds",
+  "avail_cefid",
+  "surveill_cr",
+  "cuti",
+  "bsi",
+  "hap_vap",
+  "cnsi",
+  "cai" 
+)
+
+theme_gtsummary_compact()
+theme_gtsummary_journal(journal = "jama")
+
+db$data %>%
+  left_join(world %>% st_drop_geometry() %>% select(name, region_un), by = c("country" = "name")
+  ) %>%
+  mutate(
+    region_un = case_when(
+      country == "United States" ~ "Americas",
+      country == "Côte dIvoire" ~ "Africa",
+      TRUE ~ region_un
+    )
+  ) %>% 
+  select(all_of(columns_table1)) %>%
+  droplevels() %>% 
+  tbl_summary(
+    label = list(
+      region_un ~ "World region",
+      specialization ~ "Specialization",
+      experience ~ "Years of experience",
+      teach_hosp ~ "Teaching hospital",
+      number_beds ~ "Number of beds",
+      surveill_cr ~ "Surveillance of carbapenem-resistant organisms",
+      cuti ~ "cUTI management",
+      bsi ~ "BSI management",
+      hap_vap ~ "HAP/VAP management",
+      cnsi ~ "CNS management",
+      cai ~ "cIAI management"
+    ),
+    statistic = all_categorical() ~ "{n} ({p}%)",
+    sort = all_categorical(FALSE) ~ "frequency",
+    missing = "no"
+  ) %>%
+  modify_header(label ~ "**Characteristic**") %>%
+  bold_labels() %>% 
+  as_flex_table()
+  
+  
+
+```
+
+
+
+```{r}
+data_figure2 <- db$data %>% 
+  select(
+    'CRE (non-MBL)' = perceptcre_n_mb,
+    'CRE (MBL)' = perceptcre_mb,
+    'CRAB (non-MBL)' = percept_crab_n_m,
+    'CRAB (MBL)' = percept_crab_mb,
+    'CRPA (non-MBL)' = percept_crpa_n_mb,
+    'CRPA (MBL)' = percptcrpa_mb
+  ) %>% 
+    mutate(across(everything(), forcats::fct_rev))
+
+
+figure2_likert <- plot(likert(data_figure2), type = "bar", legend = " ",legend.position = "bottom")
+figure2_likert +
+  labs(
+    title = "Figure 2. Perceived efficacy of cefiderocol by pathogen",
+    x = "",
+    y = "Percentage of respondents"
+  ) +
+  theme(
+    plot.title = element_text(size = 8, face = "bold", hjust = 0)
+  )
+
+ggsave("images/survey_figure2.png",
+       width = 8,
+       height = 4,
+       dpi = 600)
+
+```
+
+![](images/survey_figure2.png){fig-align="center"}
+
+```{r}
+#| label: Table 1
 tbl_findings <-tribble(
   ~Section, ~Finding,
   "Epidemiology burden",
