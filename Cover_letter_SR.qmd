@@ -29,6 +29,8 @@ Cefiderocol has rapidly become a cornerstone in the management of infections cau
 
 To address this critical knowledge gap, we conducted a comprehensive systematic review integrating *in vitro* synergy studies, *in vivo* experimental models, and clinical data, including an exploratory meta-analysis of comparative clinical cohorts. To our knowledge, this is the most extensive synthesis to date evaluating cefiderocol-based combination therapy across translational and clinical domains.
 
+In line with FAIR science principles and to promote transparency and reproducibility, we have created a public GitHub repository containing the datasets and full analytical code used for the meta-analysis, available at: <https://github.com/mat194/Cefiderocol-Meta-analysis>
+
 We believe this manuscript fits well within the scope and readership of the *International Journal of Infectious Diseases*, as it addresses a highly relevant and timely clinical problem in the management of antimicrobial-resistant infections, combining mechanistic insights with real-world clinical evidence.
 
 This manuscript has not been published previously and is not under consideration for publication elsewhere. All authors have approved the submitted versions and declare no conflicts of interest. This work was part of the CLEARER project (Current cLinical scEnARios for the use of cefidErocol in multidrug-Resistant infections: a case study-based approach) supported by the Global Antibiotic Research and Development Partnership ([GARDP](https://gardp.org/?gad_source=1&gad_campaignid=21197320716&gbraid=0AAAAACOTegsrNeqUFE8SCvkOwahZWN56L&gclid=CjwKCAiA4KfLBhB0EiwAUY7GAS3gHm6oPKDIyaOntrCHaLJTwe0eQ0aywDie-GLE7MC-Dl9UaBL0ORoChrwQAvD_BwE)).
